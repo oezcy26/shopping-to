@@ -1,21 +1,21 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <h1>Die App-Komponente</h1>
-    <hello-world/>
+    <h1>{{title}}</h1>
+    
   </div>
 </template>
 
 <script>
 
-import HelloWorld from './components/HelloWorld'
-
 export default {
   name: 'App',
-  components:{
-    HelloWorld
+  data: function(){
+    return {
+      title: 'ShoppTeam'
+    }
   }
 }
+
 </script>
 
 <style>
