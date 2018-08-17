@@ -8,8 +8,7 @@ Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
+  el: '#mountHere', //mount on element , css selector #app
   components: { App },
   template: '<App/>'
 })
