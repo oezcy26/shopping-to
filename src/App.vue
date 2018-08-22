@@ -1,23 +1,35 @@
 <template>
+
   <div id="app">
-    <h1>{{title}}</h1>
-    <vue-playground/>
+    <side-bar v-on:actualSite="onActualSiteChanged($event);"></side-bar>
+    <page-content></page-content>
+
+
+
+
   </div>
 </template>
 
 <script>
 
-  import VuePlayground from './components/VuePlayground';
+  import SideBar from './components/Sidebar'
+  import PageContent from './components/PageContent'
 
   export default {
     name: 'App',
     data: function(){
       return {
-        title: 'ShoppTeam'
+        title: 'ShoppTeam',
+        mainUsername: 'Nelson'
       }
     },
     components: {
-      VuePlayground
+      PageContent, SideBar
+    },
+    methods:{
+      onActualSiteChanged: function(newSite){
+        alert('New Site choosen:  ' + newSite);
+      }
     }
   }
 
@@ -32,4 +44,5 @@
     color: #2c3e50;
     margin-top: 60px;
   }
+
 </style>

@@ -1,6 +1,6 @@
 <template>
   <fieldset>
-    <legend><b>{{title}}</b></legend>
+    <legend><b>{{title}} - {{username}}</b></legend>
 
     <p>
       <span v-bind:title="time">
@@ -25,16 +25,16 @@
       <button v-on:click="addCustomBurger(customText)">Ok</button>
     </p>
 
-
   </fieldset>
 </template>
 
 <script>
+
 export default {
   name: 'VuePlayground',
+  props: ['title', 'username'],
   data () {
     return {
-      title: 'Vue Playground',
       time: '' + new Date().toLocaleString(),
       seeText: false,
       burgers: [
