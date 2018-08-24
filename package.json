@@ -13,7 +13,9 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "bulma": "^0.7.1",
     "firebase": "^5.3.1",
+    "materialize-css": "^1.0.0-rc.2",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vuefire": "^1.4.5"

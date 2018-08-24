@@ -3,6 +3,20 @@
   <div id="app">
     <side-bar v-on:actualSite="onActualSiteChanged($event);"></side-bar>
     <h1>{{title}}</h1>
+    <a class="waves-effect waves-light btn" v-on:click="test()">button</a>
+
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            Primary title
+          </h1>
+          <h2 class="subtitle">
+            Primary subtitle
+          </h2>
+        </div>
+      </div>
+    </section>
 
     <div v-if="actualSite == 1">
       <vue-playground title="Das ist Spielplatz 1" username="Özcan"/>
@@ -36,6 +50,9 @@
     methods:{
       onActualSiteChanged: function(newSite){
         this.actualSite = newSite;
+      },
+      test: function(){
+        alert('test');
       }
     }
   }
