@@ -37,6 +37,7 @@ export default {
     return {
       time: '' + new Date().toLocaleString(),
       seeText: false,
+      customText: '',
       burgers: [
         {name:'Big Mac'},
         {name:'Big King XXL'},
