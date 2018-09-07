@@ -3,9 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import './../node_modules/bulma/css/bulma.css'
-import './../node_modules/materialize-css/dist/css/materialize.min.css'
-import './../node_modules/materialize-css/dist/js/materialize.min.js'
+//import './../node_modules/bulma/css/bulma.css'
+//import './../node_modules/materialize-css/dist/css/materialize.min.css'
+//import './../node_modules/materialize-css/dist/js/materialize.min.js'
 
 Vue.config.productionTip = false
 

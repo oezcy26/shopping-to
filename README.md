@@ -38,6 +38,5 @@ npm run Build
 
 # Deploy to Firebase
 firebase deploy
-
-For detailed explanation on firebase hosting, check out the [Quickstart-Guide](https://firebase.google.com/docs/hosting/quickstart) of Firebase hosting.
 ```
+For detailed explanation on firebase hosting, check out the [Quickstart-Guide](https://firebase.google.com/docs/hosting/quickstart) of Firebase hosting.
