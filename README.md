@@ -28,4 +28,16 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-"# shopping-to" 
+"# shopping-to"
+
+## Firebase Hosting
+
+``` bash
+# Build Files to deploy into 'dist'-Folder (Configurable in firebase.json)
+npm run Build
+
+# Deploy to Firebase
+firebase deploy
+
+For detailed explanation on firebase hosting, check out the [Quickstart-Guide](https://firebase.google.com/docs/hosting/quickstart) of Firebase hosting.
+```
