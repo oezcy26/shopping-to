@@ -1,16 +1,20 @@
 <template>
-
   <div id="app">
 
     <!-- Top bar -->
-    <b-navbar toggleable="false" type="dark" variant="info">
+    <b-navbar toggleable="false" type="dark" variant="info"
+      style="padding: 0px 16px; margin-bottom: 10px;">
       <b-navbar-brand href="#">{{title}}</b-navbar-brand>
     </b-navbar>
 
 
     <!-- Item liste -->
-        <b-list-group v-if="items.length > 0">
-          <b-list-group-item v-for="i in items"
+    <div v-if="loading" align="center" style="width:100%;">
+      <loading-spinner ></loading-spinner>
+    </div>
+    <div v-else>
+      <b-list-group v-if="items.length > 0">
+        <b-list-group-item v-for="i in items"
           class="d-flex justify-content-between align-items-center"
           style="padding: 4px 0px; padding-left: 20px;">
           {{i.title}}
@@ -18,11 +22,8 @@
           style="background-color: #ff7c89;">x</b-btn>
         </b-list-group-item>
       </b-list-group>
-
-
-
       <lazy-smiley v-else></lazy-smiley>
-
+    </div>
 
     <!-- New item input field -->
     <b-navbar toggleable="false" type="light" variant="info" fixed="bottom">
@@ -36,17 +37,13 @@
       </b-nav-form>
     </b-navbar>
 
-
-
-
-
-
   </div>
 </template>
 
 <script>
 
   import LazySmiley from './components/LazySmiley'
+  import LoadingSpinner from './components/LoadingSpinner'
   import Firebase from 'firebase'
 
   //TODO api-key weg von github !!
@@ -68,16 +65,25 @@
   export default {
     name: 'App',
     firebase: {
-      items: itemRef
+      items: {
+        source: itemRef,
+        readyCallback: function(){
+          this.loading = false;
+        }
+      }
     },
     data: function(){
       return {
+        loading : true,
         title: 'Dringende Einkäufe',
         newItemTitle: ''
       }
     },
+
+    mounted: function(){
+    },
     components: {
-      LazySmiley
+      LazySmiley, LoadingSpinner
     },
     methods:{
       test: function(){
