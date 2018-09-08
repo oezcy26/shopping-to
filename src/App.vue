@@ -2,23 +2,28 @@
 
   <div id="app">
 
+    <!-- Top bar -->
     <b-navbar toggleable="false" type="dark" variant="info">
       <b-navbar-brand href="#">{{title}}</b-navbar-brand>
-
     </b-navbar>
 
 
-    <b-list-group>
-      <b-list-group-item v-for="i in items"
-        class="d-flex justify-content-between align-items-center">
-        {{i.title}}
-        <b-btn @click="removeItem(i)" variant="danger" size="sm"
+    <!-- Item liste -->
+        <b-list-group v-if="items.length > 0">
+          <b-list-group-item v-for="i in items"
+          class="d-flex justify-content-between align-items-center">
+          {{i.title}}
+          <b-btn @click="removeItem(i)" variant="danger" size="sm"
           style="background-color: #ff7c89;">x</b-btn>
-      </b-list-group-item>
-    </b-list-group>
+        </b-list-group-item>
+      </b-list-group>
 
-    <br />
 
+
+      <lazy-smiley v-else></lazy-smiley>
+
+
+    <!-- New item input field -->
     <b-navbar toggleable="false" type="light" variant="info" fixed="bottom">
       <b-nav-form @submit="addNewItem" style="width: 100%;">
         <b-input-group >
@@ -40,8 +45,10 @@
 
 <script>
 
-  //import SideBar from './components/Sidebar'
+  import LazySmiley from './components/LazySmiley'
   import Firebase from 'firebase'
+
+  //TODO api-key weg von github !!
 
   let config = {
     apiKey: "AIzaSyAr3nsqdrro1dV98_YL-PY9yY3K7SApTbY",
@@ -69,7 +76,7 @@
       }
     },
     components: {
-      //SideBar
+      LazySmiley
     },
     methods:{
       test: function(){
