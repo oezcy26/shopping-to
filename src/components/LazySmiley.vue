@@ -1,6 +1,6 @@
 <template>
-  <svg height="400" width="400">
-    <circle cx="200" cy="200" r="50" :stroke="stroke" :stroke-width="strokeW" fill="yellow"></circle>
+  <svg height="200" width="200">
+    <circle :cx="face.mx" :cy="face.my" r="50" :stroke="stroke" :stroke-width="strokeW" fill="yellow"></circle>
 
     <!-- Auge l -->
     <line :x1="leftEye.lx" :y1="leftEye.ly" :x2="leftEye.mx" :y2="leftEye.my" style="stroke:black;stroke-width:3" />
@@ -21,31 +21,39 @@
 </template>
 
 <script>
+
+//mittelpunkt des Kreises
+let f = {mx: 100, my:100};
+
 export default {
   name: 'LazySmiley',
   data () {
     return {
       stroke: 'black',
       strokeW: 3,
+      face:{
+        mx: f.mx,
+        my: f.my
+      },
       leftEye: {
-        lx: 175,
-        ly: 185,
-        mx: 188,
-        my: 180,
-        rx: 200,
-        ry: 185
+        lx: f.mx - 25,
+        ly: f.my - 15,
+        mx: f.mx - 12,
+        my: f.my - 20,
+        rx: f.mx,
+        ry: f.my - 15
       },
       rightEye: {
-        lx: 220,
-        ly: 185,
-        mx: 233,
-        my: 180,
-        rx: 245,
-        ry: 185
+        lx: f.mx + 20,
+        ly: f.my - 15,
+        mx: f.mx + 33,
+        my: f.my - 20,
+        rx: f.mx + 45,
+        ry: f.my - 15
       },
       mouth:{
-        lx: 188,
-        ly: 220,
+        lx: f.mx - 12,
+        ly: f.my + 20,
         rxO: 50,
         ryO: 0,
         mxO: 25,

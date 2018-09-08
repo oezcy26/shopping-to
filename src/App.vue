@@ -11,7 +11,8 @@
     <!-- Item liste -->
         <b-list-group v-if="items.length > 0">
           <b-list-group-item v-for="i in items"
-          class="d-flex justify-content-between align-items-center">
+          class="d-flex justify-content-between align-items-center"
+          style="padding: 4px 0px; padding-left: 20px;">
           {{i.title}}
           <b-btn @click="removeItem(i)" variant="danger" size="sm"
           style="background-color: #ff7c89;">x</b-btn>
