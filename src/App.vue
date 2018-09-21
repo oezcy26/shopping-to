@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-app>
+    <v-app >
       <v-navigation-drawer app>
         <v-toolbar class="blue" >
           <!-- FAB and dialog -->
@@ -38,7 +38,7 @@
             <!-- clickable -->
             <v-list-tile v-if="!isFavInitems(f)" @click="onFavoriteClicked(f)" >
               <v-list-tile-content>
-                <v-list-tile-title v-text="f.title"></v-list-tile-title>
+                <v-list-tile-title v-text="f.title" class="title"></v-list-tile-title>
               </v-list-tile-content>
               <v-list-tile-action>
                 <v-btn icon ripple @click.stop="removeFav(f)">
@@ -46,11 +46,11 @@
                 </v-btn>
               </v-list-tile-action>
             </v-list-tile>
-            <v-divider style="margin-top:0px; margin-bottom:0px;"></v-divider>
+            <v-divider class="noMargin"></v-divider>
             <!-- NOT clickable -->
             <v-list-tile v-if="isFavInitems(f)" disabled>
               <v-list-tile-content>
-                <v-list-tile-title v-text="f.title"></v-list-tile-title>
+                <v-list-tile-title v-text="f.title" class="title"></v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
             <v-divider style="margin-top:0px; margin-bottom:0px;"></v-divider>
@@ -59,7 +59,7 @@
       </v-navigation-drawer>
 
 
-      <v-toolbar app>Einkäufe</v-toolbar>
+      <v-toolbar app class="cyan accent-2">Einkäufe</v-toolbar>
 
 
       <v-content>
@@ -73,7 +73,7 @@
                 <template v-for="i in items">
                   <v-list-tile>
                     <v-list-tile-content>
-                      <v-list-tile-title v-text="i.title"></v-list-tile-title>
+                      <v-list-tile-title v-text="i.title" class="title"></v-list-tile-title>
                     </v-list-tile-content>
                     <v-list-tile-action>
                       <v-btn @click="removeItem(i)" ripple>
@@ -81,7 +81,7 @@
                       </v-btn>
                     </v-list-tile-action>
                   </v-list-tile>
-                  <v-divider></v-divider>
+                  <v-divider class="noMargin"></v-divider>
                 </template>
               </v-list>
             </div>
@@ -231,6 +231,11 @@
 
   body{
     height: 100%;
+  }
+
+  .noMargin{
+    margin-top:0px;
+    margin-bottom:0px;
   }
 
 </style>
