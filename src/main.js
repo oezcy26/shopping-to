@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import VueFire from 'vuefire'
+import { VueHammer } from 'vue2-hammer'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -12,10 +13,13 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 //import './../node_modules/materialize-css/dist/css/materialize.min.css'
 //import './../node_modules/materialize-css/dist/js/materialize.min.js'
 
+
 Vue.config.productionTip = false
+
 
 Vue.use(BootstrapVue);
 Vue.use(VueFire);
+Vue.use(VueHammer);
 
 /* eslint-disable no-new */
 new Vue({

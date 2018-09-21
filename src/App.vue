@@ -1,29 +1,43 @@
 <template>
   <div id="app">
 
-    <!-- Top bar -->
+    <!-- Top bar
     <b-navbar toggleable="false" type="dark" variant="info"
       style="padding: 0px 16px; margin-bottom: 10px;">
       <b-navbar-brand href="#">{{title}}</b-navbar-brand>
     </b-navbar>
+     -->
+
+    <b-tabs v-model="tabIndex"
+      v-hammer:swipe.left="onSwipeLeft" >
+
+      <b-tab title="Favoriten">
+
+      </b-tab>
+
+      <b-tab title="Einkäufe">
+        <!-- Item liste -->
+        <div v-if="loading" align="center" style="width:100%;">
+          <loading-spinner ></loading-spinner>
+        </div>
+        <div v-else>
+          <b-list-group v-if="items.length > 0">
+            <b-list-group-item v-for="i in items"
+              class="d-flex justify-content-between align-items-center"
+              style="padding: 4px 0px; padding-left: 20px;">
+              {{i.title}}
+              <b-btn @click="removeItem(i)" variant="danger" size="sm"
+              style="background-color: #ff7c89;">x</b-btn>
+            </b-list-group-item>
+          </b-list-group>
+          <lazy-smiley v-else></lazy-smiley>
+        </div>
 
 
-    <!-- Item liste -->
-    <div v-if="loading" align="center" style="width:100%;">
-      <loading-spinner ></loading-spinner>
-    </div>
-    <div v-else>
-      <b-list-group v-if="items.length > 0">
-        <b-list-group-item v-for="i in items"
-          class="d-flex justify-content-between align-items-center"
-          style="padding: 4px 0px; padding-left: 20px;">
-          {{i.title}}
-          <b-btn @click="removeItem(i)" variant="danger" size="sm"
-          style="background-color: #ff7c89;">x</b-btn>
-        </b-list-group-item>
-      </b-list-group>
-      <lazy-smiley v-else></lazy-smiley>
-    </div>
+      </b-tab>
+
+    </b-tabs>
+
 
     <!-- New item input field -->
     <b-navbar toggleable="false" type="light" variant="info" fixed="bottom">
@@ -76,7 +90,9 @@
       return {
         loading : true,
         title: 'Dringende Einkäufe',
-        newItemTitle: ''
+        newItemTitle: '',
+        numberOfTabs: 2,
+        tabIndex : 1
       }
     },
 
@@ -96,6 +112,18 @@
       },
       removeItem: function(item){
         itemRef.child(item['.key']).remove();
+      },
+      onSwipeLeft: function(){
+        this.tabIndex--;
+        if(this.tabIndex < 0){
+          this.tabIndex = this.numberOfTabs - 1;
+        }
+      },
+      onSwipeRight: function(){
+        this.tabIndex++;
+        if(this.tabIndex == this.numberOfTabs){
+          this.tabIndex = 0;
+        }
       }
     }
   }
@@ -118,6 +146,10 @@
   .siteHeader{
     padding: 20px 10px;
     background-color: #c6c6f5; /* light blue */
+  }
+
+  body{
+    height: 100%;
   }
 
 </style>
