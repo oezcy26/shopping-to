@@ -6,9 +6,11 @@ import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 import VueFire from 'vuefire'
 import { VueHammer } from 'vue2-hammer'
+import Vuetify from 'vuetify'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'vuetify/dist/vuetify.min.css' 
 //import './../node_modules/bulma/css/bulma.css'
 //import './../node_modules/materialize-css/dist/css/materialize.min.css'
 //import './../node_modules/materialize-css/dist/js/materialize.min.js'
@@ -17,9 +19,11 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.config.productionTip = false
 
 
+
 Vue.use(BootstrapVue);
 Vue.use(VueFire);
 Vue.use(VueHammer);
+Vue.use(Vuetify)
 
 /* eslint-disable no-new */
 new Vue({

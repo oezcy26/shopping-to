@@ -1,92 +1,103 @@
 <template>
   <div id="app">
-
-    <!-- Top bar
-    <b-navbar toggleable="false" type="dark" variant="info"
-      style="padding: 0px 16px; margin-bottom: 10px;">
-      <b-navbar-brand href="#">{{title}}</b-navbar-brand>
-    </b-navbar>
-     -->
-
-    <b-tabs pills v-model="tabIndex">
-
-      <!-- **** FAVORITEN ***** -->
-      <b-tab title="Favoriten">
-        <div v-if="this.refloading" align="center" style="width:100%;">
-          <loading-spinner ></loading-spinner>
-        </div>
-        <div v-else>
-          <b-list-group v-if="favorites.length > 0">
-            <b-list-group-item v-for="f in favorites"
-              class="d-flex justify-content-between align-items-center"
-              style="padding: 4px 0px; padding-left: 20px;"
-              @click="onFavoriteClicked(f)"
-              v-bind:class="{ isUsed: isFavInitems(f) }">
-              {{f.title}}
-              <b-btn @click="removeFav(i)" variant="danger" size="sm"
-              style="background-color: #ff7c89;">x</b-btn>
-            </b-list-group-item>
-          </b-list-group>
-          <lazy-smiley v-else></lazy-smiley>
-        </div>
-
-        <b-navbar toggleable="false" type="light" fixed="bottom"
-          v-hammer:swipe.left="onSwipeLeft"
-          v-hammer:swipe.right="onSwipeRight"
-          style="background-color: #4cb817;">
-          <b-nav-form @submit="addNewFav" style="width: 100%;">
-            <b-input-group >
-              <b-form-input v-model="newFavTitle" placeholder="Ihr Favorit" size="" required type="text" />
-              <b-input-group-append>
-                <b-btn type="submit" variant="secondary" size="">Ok</b-btn>
-              </b-input-group-append>
-            </b-input-group>
-          </b-nav-form>
-        </b-navbar>
-
-      </b-tab>
-
-      <!-- ****** EINKÄUFE ******* -->
-      <b-tab title="Einkäufe">
-        <!-- Item liste -->
-        <div v-if="itemloading" align="center" style="width:100%;">
-          <loading-spinner ></loading-spinner>
-        </div>
-
-        <div v-else>
-          <b-list-group v-if="items.length > 0">
-            <b-list-group-item v-for="i in items"
-              class="d-flex justify-content-between align-items-center"
-              style="padding: 4px 0px; padding-left: 20px;">
-              {{i.title}}
-              <b-btn @click="removeItem(i)" variant="danger" size="sm"
-              style="background-color: #ff7c89;">x</b-btn>
-            </b-list-group-item>
-          </b-list-group>
-          <lazy-smiley v-else></lazy-smiley>
-        </div>
-
-        <b-navbar toggleable="false" type="light" variant="info" fixed="bottom"
-          v-hammer:swipe.left="onSwipeLeft"
-          v-hammer:swipe.right="onSwipeRight">
-          <b-nav-form @submit="addNewItem" style="width: 100%;">
-            <b-input-group >
-              <b-form-input v-model="newItemTitle" placeholder="Was musst du kaufen?" size="" required type="text" />
-              <b-input-group-append>
-                <b-btn type="submit" variant="secondary" size="">Ok</b-btn>
-              </b-input-group-append>
-            </b-input-group>
-          </b-nav-form>
-        </b-navbar>
-
-      </b-tab>
-
-    </b-tabs>
+    <v-app>
+      <v-navigation-drawer app>
+        <v-toolbar class="blue" >
+          <!-- FAB and dialog -->
+          <v-btn fab small color="cyan accent-2"
+             center right absolute
+             @click="newFavDialog = !newFavDialog">
+             <v-icon>add</v-icon>
+          </v-btn>
+          <v-dialog v-model="newFavDialog" max-width="500px">
+          <v-card>
+            <v-card-text>
+                <v-text-field label="Favorit" v-model="newFavTitle"></v-text-field>
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn flat color="primary" @click.native="addNewFav">Ok</v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+        <!-- FAVORITES TITLE -->
+        <v-list >
+          <v-list-tile>
+            <v-list-tile-content>
+              <v-list-tile-title>
+                <span class="white--text">Favoriten</span>
+              </v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+          <v-divider></v-divider>
+        </v-list>
+      </v-toolbar>
+      <!-- FAVORITES -->
+        <v-list>
+          <template v-for="f in favorites" >
+            <!-- clickable -->
+            <v-list-tile v-if="!isFavInitems(f)" @click="onFavoriteClicked(f)" >
+              <v-list-tile-content>
+                <v-list-tile-title v-text="f.title"></v-list-tile-title>
+              </v-list-tile-content>
+              <v-list-tile-action>
+                <v-btn icon ripple @click.stop="removeFav(f)">
+                  <v-icon color="red lighten-3">delete_forever</v-icon>
+                </v-btn>
+              </v-list-tile-action>
+            </v-list-tile>
+            <v-divider style="margin-top:0px; margin-bottom:0px;"></v-divider>
+            <!-- NOT clickable -->
+            <v-list-tile v-if="isFavInitems(f)" disabled>
+              <v-list-tile-content>
+                <v-list-tile-title v-text="f.title"></v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+            <v-divider style="margin-top:0px; margin-bottom:0px;"></v-divider>
+          </template>
+        </v-list>
+      </v-navigation-drawer>
 
 
-    <!-- New item input field -->
+      <v-toolbar app>Einkäufe</v-toolbar>
 
 
+      <v-content>
+        <v-container fluid>
+            <div v-if="itemloading" align="center" style="width:100%;">
+              <loading-spinner ></loading-spinner>
+            </div>
+
+            <div v-else>
+              <v-list v-if="items.length > 0">
+                <template v-for="i in items">
+                  <v-list-tile>
+                    <v-list-tile-content>
+                      <v-list-tile-title v-text="i.title"></v-list-tile-title>
+                    </v-list-tile-content>
+                    <v-list-tile-action>
+                      <v-btn @click="removeItem(i)" ripple>
+                        <v-icon color="grey lighten-1">done_outline</v-icon>
+                      </v-btn>
+                    </v-list-tile-action>
+                  </v-list-tile>
+                  <v-divider></v-divider>
+                </template>
+              </v-list>
+            </div>
+        </v-container>
+      </v-content>
+
+
+      <v-footer app height="auto" inset>
+        <v-layout justify-center fluid>
+          <v-form @submit="addNewItem">
+            <v-text-field v-model="newItemTitle" placeholder="Was musst du kaufen?" size="" required type="text" />
+          </v-form>
+          <v-btn @click="addNewItem" color="primary">OK</v-btn>
+       </v-layout>
+      </v-footer>
+    </v-app>
   </div>
 </template>
 
@@ -137,7 +148,8 @@
         newItemTitle: '',
         newFavTitle: '',
         numberOfTabs: 2,
-        tabIndex : 1  //intial showed tab (index)
+        tabIndex : 1,  //intial showed tab (index)
+        newFavDialog : false
       }
     },
 
@@ -162,6 +174,7 @@
         evt.preventDefault();
         favRef.push({title: this.newFavTitle});
         this.newFavTitle = '';
+        this.newFavDialog = false;
       },
       removeFav: function(fav){
         favRef.child(fav['.key']).remove();
@@ -212,9 +225,8 @@
     background-color: #c6c6f5; /* light blue */
   }
 
-  .isUsed{
-    background-color: #e7e6e6;
-    color: white;
+  .used{
+    color: #007bff;
   }
 
   body{
