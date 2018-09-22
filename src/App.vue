@@ -2,9 +2,9 @@
   <div id="app">
     <v-app >
       <v-navigation-drawer app>
-        <v-toolbar class="blue" >
+        <v-toolbar class="light-green" >
           <!-- FAB and dialog -->
-          <v-btn fab small color="cyan accent-2"
+          <v-btn fab small color="lime"
              center right absolute
              @click="newFavDialog = !newFavDialog">
              <v-icon>add</v-icon>
@@ -59,7 +59,7 @@
       </v-navigation-drawer>
 
 
-      <v-toolbar app class="cyan accent-2">Einkäufe</v-toolbar>
+      <v-toolbar app class="lime">Einkäufe</v-toolbar>
 
 
       <v-content>
@@ -94,7 +94,7 @@
           <v-form @submit="addNewItem">
             <v-text-field v-model="newItemTitle" placeholder="Was musst du kaufen?" size="" required type="text" />
           </v-form>
-          <v-btn @click="addNewItem" color="primary">OK</v-btn>
+          <v-btn @click="addNewItem" color="lime">OK</v-btn>
        </v-layout>
       </v-footer>
     </v-app>
@@ -147,8 +147,6 @@
         title: 'Dringende Einkäufe',
         newItemTitle: '',
         newFavTitle: '',
-        numberOfTabs: 2,
-        tabIndex : 1,  //intial showed tab (index)
         newFavDialog : false
       }
     },
@@ -178,18 +176,6 @@
       },
       removeFav: function(fav){
         favRef.child(fav['.key']).remove();
-      },
-      onSwipeLeft: function(){
-        this.tabIndex--;
-        if(this.tabIndex < 0){
-          this.tabIndex = this.numberOfTabs - 1;
-        }
-      },
-      onSwipeRight: function(){
-        this.tabIndex++;
-        if(this.tabIndex == this.numberOfTabs){
-          this.tabIndex = 0;
-        }
       },
       onFavoriteClicked: function (fav){
         let newItem = {title: fav.title, favId: fav['.key']};
