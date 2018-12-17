@@ -108,6 +108,23 @@
   import Firebase from 'firebase'
   import firebaseConfig from './firebaseConfig'
 
+  /* IMPORTANT!: To make it run, create a file in this directory: 'firebaseConfig.js'
+  with this content:
+
+  let firebaseConfig;
+  export default firebaseConfig = {
+    -- HERE THE CONFIG OBJECT FROM FIREBASE COMES IN --
+    apiKey: ....,
+    authDomain: ....,
+    databaseURL: ....,
+    projectId: ....,
+    storageBucket: .....,
+    messagingSenderId: ......
+  }
+
+
+  */
+
 
   let app = Firebase.initializeApp(firebaseConfig);
   let db = app.database();
