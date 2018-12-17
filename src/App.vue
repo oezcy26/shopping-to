@@ -106,19 +106,10 @@
   import LazySmiley from './components/LazySmiley'
   import LoadingSpinner from './components/LoadingSpinner'
   import Firebase from 'firebase'
+  import firebaseConfig from './firebaseConfig'
 
-  //TODO api-key weg von github !!
 
-  let config = {
-    apiKey: "AIzaSyAr3nsqdrro1dV98_YL-PY9yY3K7SApTbY",
-    authDomain: "shopping-to.firebaseapp.com",
-    databaseURL: "https://shopping-to.firebaseio.com",
-    projectId: "shopping-to",
-    storageBucket: "shopping-to.appspot.com",
-    messagingSenderId: "891689673651"
-  }
-
-  let app = Firebase.initializeApp(config);
+  let app = Firebase.initializeApp(firebaseConfig);
   let db = app.database();
 
   let itemRef = db.ref('items');
