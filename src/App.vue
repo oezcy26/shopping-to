@@ -36,7 +36,7 @@
         <v-list>
           <template v-for="f in favorites" >
             <!-- clickable -->
-            <v-list-tile v-if="!isFavInitems(f)" @click="onFavoriteClicked(f)" >
+            <v-list-tile v-if="!isFavInitems(f)" @click="onFavoriteClicked(f)" :key=f>
               <v-list-tile-content>
                 <v-list-tile-title v-text="f.title" class="title"></v-list-tile-title>
               </v-list-tile-content>
@@ -46,24 +46,23 @@
                 </v-btn>
               </v-list-tile-action>
             </v-list-tile>
-            <v-divider class="noMargin"></v-divider>
+            <v-divider class="noMargin" :key=f></v-divider>
             <!-- NOT clickable -->
-            <v-list-tile v-if="isFavInitems(f)" disabled>
+            <v-list-tile v-if="isFavInitems(f)" disabled :key=f>
               <v-list-tile-content>
                 <v-list-tile-title v-text="f.title" class="title"></v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
-            <v-divider style="margin-top:0px; margin-bottom:0px;"></v-divider>
+            <v-divider style="margin-top:0px; margin-bottom:0px;" :key=f></v-divider>
           </template>
         </v-list>
       </v-navigation-drawer>
 
-
+      <!-- EINKÄUFE -->
       <v-toolbar app class="lime">Einkäufe</v-toolbar>
 
-
       <v-content>
-        <v-container fluid>
+        <v-container fluid style="padding:0 0;">
             <div v-if="itemloading" align="center" style="width:100%;">
               <loading-spinner ></loading-spinner>
             </div>
@@ -71,17 +70,17 @@
             <div v-else>
               <v-list v-if="items.length > 0">
                 <template v-for="i in items">
-                  <v-list-tile>
+                  <v-list-tile :key=i>
                     <v-list-tile-content>
-                      <v-list-tile-title v-text="i.title" class="title"></v-list-tile-title>
+                      <v-list-tile-subtitle v-text="i.title" class="title"></v-list-tile-subtitle>
                     </v-list-tile-content>
                     <v-list-tile-action>
-                      <v-btn @click="removeItem(i)" ripple>
-                        <v-icon color="grey lighten-1">done_outline</v-icon>
+                      <v-btn @click="removeItem(i)" fab small dark outline color="green">
+                        <v-icon >done</v-icon>
                       </v-btn>
                     </v-list-tile-action>
                   </v-list-tile>
-                  <v-divider class="noMargin"></v-divider>
+                  <v-divider class="noMargin" :key=i></v-divider>
                 </template>
               </v-list>
             </div>
@@ -91,10 +90,14 @@
 
       <v-footer app height="auto" inset>
         <v-layout justify-center fluid>
-          <v-form @submit="addNewItem">
-            <v-text-field v-model="newItemTitle" placeholder="Was musst du kaufen?" size="" required type="text" />
-          </v-form>
-          <v-btn @click="addNewItem" color="lime">OK</v-btn>
+          <v-flex grow>
+            <v-form @submit="addNewItem">
+              <v-text-field v-model="newItemTitle" placeholder="Was musst du kaufen?" size="" required type="text" />
+            </v-form>
+          </v-flex>
+          <v-flex shrink>
+            <v-btn @click="addNewItem" color="lime" fab    >OK</v-btn>
+          </v-flex>
        </v-layout>
       </v-footer>
     </v-app>
@@ -208,7 +211,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
     margin-top: 0px;
     padding-bottom: 70px;
 
@@ -217,10 +219,6 @@
   .siteHeader{
     padding: 20px 10px;
     background-color: #c6c6f5; /* light blue */
-  }
-
-  .used{
-    color: #007bff;
   }
 
   body{

@@ -2,6 +2,11 @@
 
 > collaborative shopping list
 
+## Technologiestack
+- Vuetify
+- Vue.js
+- Firebase
+
 ## Build Setup
 
 ``` bash
