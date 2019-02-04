@@ -6,7 +6,7 @@
           <!-- FAVORITES TITLE -->
           <v-layout justify-center fluid>
             <v-flex grow>
-              <v-form @submit="addNewPersItem">
+              <v-form @submit="addPersItem">
                 <v-text-field
                   v-model="newPersItemTitle"
                   placeholder="Was musst du kaufen?"
@@ -17,7 +17,7 @@
               </v-form>
             </v-flex>
             <v-flex shrink>
-              <v-btn @click="addNewPersItem" fab small color="lime">
+              <v-btn @click="addPersItem" fab small color="lime">
                 <v-icon>add</v-icon>
               </v-btn>
             </v-flex>
@@ -25,14 +25,14 @@
         </v-toolbar>
         <!-- FAVORITES -->
         <v-list>
-          <template v-for="f in personalItems">
+          <template v-for="(pi,idx) in persItems">
             <!-- clickable -->
             <v-list-tile>
               <v-list-tile-content>
-                <v-list-tile-title v-text="f" class="title"></v-list-tile-title>
+                <v-list-tile-title v-text="pi" class="title"></v-list-tile-title>
               </v-list-tile-content>
               <v-list-tile-action>
-                <v-btn fab small dark outline color="green">
+                <v-btn fab small dark outline color="green" @click="removePersItem(idx)">
                   <v-icon>done</v-icon>
                 </v-btn>
               </v-list-tile-action>
@@ -136,24 +136,27 @@ export default {
       }
     }
   },
+  components: {
+    LazySmiley,
+    LoadingSpinner
+  },
   data: function() {
     return {
       itemloading: true,
       refloading: true,
-      newItemTitle: "",
-      newPersItemTitle: ""
+      newItemTitle: null,
+      newPersItemTitle: null,
+      persItems: []
     };
   },
-  computed: {
-    personalItems: function() {
-      let pItems = localStorage.getItem("personalItems");
-      return pItems;
+  mounted: function() {
+    if (localStorage.getItem("persItems")) {
+      try {
+        this.persItems = JSON.parse(localStorage.getItem("persItems"));
+      } catch (e) {
+        localStorage.removeItem("persItems");
+      }
     }
-  },
-  mounted: function() {},
-  components: {
-    LazySmiley,
-    LoadingSpinner
   },
   methods: {
     test: function() {
@@ -167,7 +170,24 @@ export default {
     removeItem: function(item) {
       itemRef.child(item[".key"]).remove();
     },
-    addNewPersItem: function() {}
+    addPersItem() {
+      // ensure they actually typed something
+      if (!this.newPersItemTitle) {
+        return;
+      }
+
+      this.persItems.push(this.newPersItemTitle);
+      this.newPersItemTitle = "";
+      this.savePersItems();
+    },
+    removePersItem(x) {
+      this.persItems.splice(x, 1);
+      this.savePersItems();
+    },
+    savePersItems() {
+      const parsed = JSON.stringify(this.persItems);
+      localStorage.setItem("persItems", parsed);
+    }
   }
 };
 </script>
