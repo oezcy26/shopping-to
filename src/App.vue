@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-app>
-      <v-navigation-drawer app>
+      <v-navigation-drawer app v-model="drawer">
         <v-toolbar id="navToolbar" class="light-green">
           <!-- FAVORITES TITLE -->
           <v-layout justify-center fluid>
@@ -45,8 +45,10 @@
       <!-- EINKÄUFE -->
       <v-toolbar app class="lime">
         <span>
-          <b>Gemeinsame</b> Liste
+          <b>Einkäufe</b>
         </span>
+        <v-spacer/>
+        <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
       </v-toolbar>
 
       <v-content>
@@ -146,7 +148,8 @@ export default {
       refloading: true,
       newItemTitle: null,
       newPersItemTitle: null,
-      persItems: []
+      persItems: [],
+      drawer: null // drawer open or close
     };
   },
   mounted: function() {
