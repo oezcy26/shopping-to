@@ -3,25 +3,7 @@
     <v-app>
       <v-navigation-drawer app v-model="drawer">
         <v-toolbar id="navToolbar" class="light-green">
-          <!-- FAVORITES TITLE -->
-          <v-layout justify-center fluid>
-            <v-flex grow>
-              <v-form @submit="addPersItem">
-                <v-text-field
-                  v-model="newPersItemTitle"
-                  placeholder="Was musst du kaufen?"
-                  size
-                  required
-                  type="text"
-                />
-              </v-form>
-            </v-flex>
-            <v-flex shrink>
-              <v-btn @click="addPersItem" fab small color="lime">
-                <v-icon>add</v-icon>
-              </v-btn>
-            </v-flex>
-          </v-layout>
+          <pers-item-input v-on:persitemadded="addPersItem"></pers-item-input>
         </v-toolbar>
         <!-- FAVORITES -->
         <v-list>
@@ -134,6 +116,7 @@
 <script>
 import LazySmiley from "./components/LazySmiley";
 import LoadingSpinner from "./components/LoadingSpinner";
+import PersItemInput from "./components/PersItemInput";
 import Firebase from "firebase";
 
 import firebaseConfig from "./firebaseConfig";
@@ -172,14 +155,15 @@ export default {
   },
   components: {
     LazySmiley,
-    LoadingSpinner
+    LoadingSpinner,
+    PersItemInput
   },
   data: function() {
     return {
       itemloading: true,
       refloading: true,
       newItemTitle: null,
-      newPersItemTitle: null,
+      newPersItemTitle: "",
       persItems: [],
       drawer: null, // drawer open or close
       addDialog: false
@@ -207,14 +191,13 @@ export default {
     removeItem: function(item) {
       itemRef.child(item[".key"]).remove();
     },
-    addPersItem() {
+    addPersItem(newPersItemTitle) {
       // ensure they actually typed something
-      if (!this.newPersItemTitle) {
+      if (!newPersItemTitle) {
         return;
       }
 
-      this.persItems.push(this.newPersItemTitle);
-      this.newPersItemTitle = "";
+      this.persItems.push(newPersItemTitle);
       this.savePersItems();
     },
     removePersItem(x) {
