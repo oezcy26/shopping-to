@@ -48,6 +48,9 @@
           <b>Einkäufe</b>
         </span>
         <v-spacer/>
+        <span>
+          <b>({{persItems.length}})</b>
+        </span>
         <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
       </v-toolbar>
 

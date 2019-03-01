@@ -1,0 +1,419 @@
+[debug] [2019-02-05T19:11:42.796Z] ----------------------------------------------------------------------
+[debug] [2019-02-05T19:11:42.800Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\alo\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2019-02-05T19:11:42.800Z] CLI Version:   4.2.1
+[debug] [2019-02-05T19:11:42.800Z] Platform:      win32
+[debug] [2019-02-05T19:11:42.800Z] Node Version:  v8.11.3
+[debug] [2019-02-05T19:11:42.804Z] Time:          Tue Feb 05 2019 20:11:42 GMT+0100 (Mitteleuropäische Zeit)
+[debug] [2019-02-05T19:11:42.804Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-02-05T19:11:42.828Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-02-05T19:11:42.828Z] > authorizing via signed-in user
+[debug] [2019-02-05T19:11:42.844Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/shopping-to  
+ 
+[debug] [2019-02-05T19:11:43.612Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'shopping-to'...
+[info] 
+[info] i  deploying database, hosting
+[info] i  database: checking rules syntax...
+[debug] [2019-02-05T19:11:43.628Z] >>> HTTP REQUEST PUT https://shopping-to.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}
+
+[debug] [2019-02-05T19:11:44.207Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database shopping-to is valid
+[debug] [2019-02-05T19:11:44.211Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/shopping-to/versions  
+
+[debug] [2019-02-05T19:11:55.030Z] <<< HTTP RESPONSE 503
+[debug] [2019-02-05T19:11:55.030Z] <<< HTTP RESPONSE BODY
+[error] 
+[error] Error: HTTP Error: 503, The service is currently unavailable.
+[debug] [2019-02-05T19:11:55.030Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 503,
+      "message": "The service is currently unavailable.",
+      "status": "UNAVAILABLE"
+    }
+  },
+  "response": {
+    "statusCode": 503,
+    "body": {
+      "error": {
+        "code": 503,
+        "message": "The service is currently unavailable.",
+        "status": "UNAVAILABLE"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 05 Feb 2019 19:11:57 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "1; mode=block",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "quic=\":443\"; ma=2592000; v=\"44,43,39\"",
+      "accept-ranges": "none",
+      "connection": "close"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/shopping-to/versions",
+        "path": "/v1beta1/sites/shopping-to/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/shopping-to/versions"
+      },
+      "method": "POST"
+    }
+  }
+}
+[debug] [2019-02-05T19:12:18.028Z] ----------------------------------------------------------------------
+[debug] [2019-02-05T19:12:18.028Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\alo\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2019-02-05T19:12:18.028Z] CLI Version:   4.2.1
+[debug] [2019-02-05T19:12:18.028Z] Platform:      win32
+[debug] [2019-02-05T19:12:18.028Z] Node Version:  v8.11.3
+[debug] [2019-02-05T19:12:18.028Z] Time:          Tue Feb 05 2019 20:12:18 GMT+0100 (Mitteleuropäische Zeit)
+[debug] [2019-02-05T19:12:18.028Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-02-05T19:12:18.044Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-02-05T19:12:18.044Z] > authorizing via signed-in user
+[debug] [2019-02-05T19:12:18.044Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/shopping-to  
+ 
+[debug] [2019-02-05T19:12:18.776Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'shopping-to'...
+[info] 
+[info] i  deploying database, hosting
+[info] i  database: checking rules syntax...
+[debug] [2019-02-05T19:12:18.776Z] >>> HTTP REQUEST PUT https://shopping-to.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}
+
+[debug] [2019-02-05T19:12:19.526Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database shopping-to is valid
+[debug] [2019-02-05T19:12:19.526Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/shopping-to/versions  
+
+[debug] [2019-02-05T19:12:30.387Z] <<< HTTP RESPONSE 503
+[debug] [2019-02-05T19:12:30.387Z] <<< HTTP RESPONSE BODY
+[error] 
+[error] Error: HTTP Error: 503, The service is currently unavailable.
+[debug] [2019-02-05T19:12:30.403Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 503,
+      "message": "The service is currently unavailable.",
+      "status": "UNAVAILABLE"
+    }
+  },
+  "response": {
+    "statusCode": 503,
+    "body": {
+      "error": {
+        "code": 503,
+        "message": "The service is currently unavailable.",
+        "status": "UNAVAILABLE"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 05 Feb 2019 19:12:32 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "1; mode=block",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "quic=\":443\"; ma=2592000; v=\"44,43,39\"",
+      "accept-ranges": "none",
+      "connection": "close"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/shopping-to/versions",
+        "path": "/v1beta1/sites/shopping-to/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/shopping-to/versions"
+      },
+      "method": "POST"
+    }
+  }
+}
+[debug] [2019-02-05T19:15:09.379Z] ----------------------------------------------------------------------
+[debug] [2019-02-05T19:15:09.379Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\alo\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2019-02-05T19:15:09.379Z] CLI Version:   4.2.1
+[debug] [2019-02-05T19:15:09.379Z] Platform:      win32
+[debug] [2019-02-05T19:15:09.379Z] Node Version:  v8.11.3
+[debug] [2019-02-05T19:15:09.379Z] Time:          Tue Feb 05 2019 20:15:09 GMT+0100 (Mitteleuropäische Zeit)
+[debug] [2019-02-05T19:15:09.379Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-02-05T19:15:09.410Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-02-05T19:15:09.410Z] > authorizing via signed-in user
+[debug] [2019-02-05T19:15:09.410Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/shopping-to  
+ 
+[debug] [2019-02-05T19:15:10.143Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'shopping-to'...
+[info] 
+[info] i  deploying database, hosting
+[info] i  database: checking rules syntax...
+[debug] [2019-02-05T19:15:10.151Z] >>> HTTP REQUEST PUT https://shopping-to.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}
+
+[debug] [2019-02-05T19:15:10.708Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database shopping-to is valid
+[debug] [2019-02-05T19:15:10.708Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/shopping-to/versions  
+
+[debug] [2019-02-05T19:15:21.549Z] <<< HTTP RESPONSE 503
+[debug] [2019-02-05T19:15:21.549Z] <<< HTTP RESPONSE BODY
+[error] 
+[error] Error: HTTP Error: 503, The service is currently unavailable.
+[debug] [2019-02-05T19:15:21.549Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 503,
+      "message": "The service is currently unavailable.",
+      "status": "UNAVAILABLE"
+    }
+  },
+  "response": {
+    "statusCode": 503,
+    "body": {
+      "error": {
+        "code": 503,
+        "message": "The service is currently unavailable.",
+        "status": "UNAVAILABLE"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 05 Feb 2019 19:15:23 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "1; mode=block",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "quic=\":443\"; ma=2592000; v=\"44,43,39\"",
+      "accept-ranges": "none",
+      "connection": "close"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/shopping-to/versions",
+        "path": "/v1beta1/sites/shopping-to/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/shopping-to/versions"
+      },
+      "method": "POST"
+    }
+  }
+}
+[debug] [2019-02-05T19:21:23.995Z] ----------------------------------------------------------------------
+[debug] [2019-02-05T19:21:23.995Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\alo\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2019-02-05T19:21:23.995Z] CLI Version:   4.2.1
+[debug] [2019-02-05T19:21:23.995Z] Platform:      win32
+[debug] [2019-02-05T19:21:23.995Z] Node Version:  v8.11.3
+[debug] [2019-02-05T19:21:23.995Z] Time:          Tue Feb 05 2019 20:21:23 GMT+0100 (Mitteleuropäische Zeit)
+[debug] [2019-02-05T19:21:23.995Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-02-05T19:21:24.042Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-02-05T19:21:24.042Z] > authorizing via signed-in user
+[debug] [2019-02-05T19:21:24.042Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/shopping-to  
+ 
+[debug] [2019-02-05T19:21:24.714Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'shopping-to'...
+[info] 
+[info] i  deploying database, hosting
+[info] i  database: checking rules syntax...
+[debug] [2019-02-05T19:21:24.746Z] >>> HTTP REQUEST PUT https://shopping-to.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}
+
+[debug] [2019-02-05T19:21:25.449Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database shopping-to is valid
+[debug] [2019-02-05T19:21:25.449Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/shopping-to/versions  
+
+[debug] [2019-02-05T19:21:36.262Z] <<< HTTP RESPONSE 503
+[debug] [2019-02-05T19:21:36.262Z] <<< HTTP RESPONSE BODY
+[error] 
+[error] Error: HTTP Error: 503, The service is currently unavailable.
+[debug] [2019-02-05T19:21:36.262Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 503,
+      "message": "The service is currently unavailable.",
+      "status": "UNAVAILABLE"
+    }
+  },
+  "response": {
+    "statusCode": 503,
+    "body": {
+      "error": {
+        "code": 503,
+        "message": "The service is currently unavailable.",
+        "status": "UNAVAILABLE"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 05 Feb 2019 19:21:38 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "1; mode=block",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "quic=\":443\"; ma=2592000; v=\"44,43,39\"",
+      "accept-ranges": "none",
+      "connection": "close"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/shopping-to/versions",
+        "path": "/v1beta1/sites/shopping-to/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/shopping-to/versions"
+      },
+      "method": "POST"
+    }
+  }
+}
+[debug] [2019-02-05T20:06:49.015Z] ----------------------------------------------------------------------
+[debug] [2019-02-05T20:06:49.015Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\alo\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase deploy
+[debug] [2019-02-05T20:06:49.015Z] CLI Version:   4.2.1
+[debug] [2019-02-05T20:06:49.015Z] Platform:      win32
+[debug] [2019-02-05T20:06:49.015Z] Node Version:  v8.11.3
+[debug] [2019-02-05T20:06:49.015Z] Time:          Tue Feb 05 2019 21:06:49 GMT+0100 (Mitteleuropäische Zeit)
+[debug] [2019-02-05T20:06:49.015Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-02-05T20:06:49.046Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-02-05T20:06:49.046Z] > authorizing via signed-in user
+[debug] [2019-02-05T20:06:49.046Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2019-02-05T20:06:49.046Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+
+[debug] [2019-02-05T20:06:49.226Z] <<< HTTP RESPONSE 200
+[debug] [2019-02-05T20:06:49.241Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/shopping-to  
+ 
+[debug] [2019-02-05T20:06:49.923Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'shopping-to'...
+[info] 
+[info] i  deploying database, hosting
+[info] i  database: checking rules syntax...
+[debug] [2019-02-05T20:06:49.923Z] >>> HTTP REQUEST PUT https://shopping-to.firebaseio.com/.settings/rules.json?dryRun=true  
+ {
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}
+
+[debug] [2019-02-05T20:06:50.498Z] <<< HTTP RESPONSE 200
+[info] +  database: rules syntax for database shopping-to is valid
+[debug] [2019-02-05T20:06:50.498Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/shopping-to/versions  
+
+[debug] [2019-02-05T20:07:01.318Z] <<< HTTP RESPONSE 503
+[debug] [2019-02-05T20:07:01.318Z] <<< HTTP RESPONSE BODY
+[error] 
+[error] Error: HTTP Error: 503, The service is currently unavailable.
+[debug] [2019-02-05T20:07:01.322Z] Error Context: {
+  "body": {
+    "error": {
+      "code": 503,
+      "message": "The service is currently unavailable.",
+      "status": "UNAVAILABLE"
+    }
+  },
+  "response": {
+    "statusCode": 503,
+    "body": {
+      "error": {
+        "code": 503,
+        "message": "The service is currently unavailable.",
+        "status": "UNAVAILABLE"
+      }
+    },
+    "headers": {
+      "vary": "X-Origin, Referer, Origin,Accept-Encoding",
+      "content-type": "application/json; charset=UTF-8",
+      "date": "Tue, 05 Feb 2019 20:07:03 GMT",
+      "server": "ESF",
+      "cache-control": "private",
+      "x-xss-protection": "1; mode=block",
+      "x-frame-options": "SAMEORIGIN",
+      "x-content-type-options": "nosniff",
+      "alt-svc": "quic=\":443\"; ma=2592000; v=\"44,43,39\"",
+      "accept-ranges": "none",
+      "connection": "close"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "firebasehosting.googleapis.com",
+        "port": 443,
+        "hostname": "firebasehosting.googleapis.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1beta1/sites/shopping-to/versions",
+        "path": "/v1beta1/sites/shopping-to/versions",
+        "href": "https://firebasehosting.googleapis.com/v1beta1/sites/shopping-to/versions"
+      },
+      "method": "POST"
+    }
+  }
+}
