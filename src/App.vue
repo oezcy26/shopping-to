@@ -99,6 +99,7 @@
             <!-- DIALOG -->
             <v-dialog v-model="addDialog">
               <v-card>
+                <v-card-text>Auswahl Migros, Coop etc..</v-card-text>
                 <v-card-title>
                   <v-layout fluid>
                     <v-flex grow>
@@ -120,11 +121,6 @@
                     </v-flex>
                   </v-layout>
                 </v-card-title>
-                <v-card-text>
-                  <span>hallo</span>
-                  <span>hall</span>
-                </v-card-text>
-                <v-card-actions>actions</v-card-actions>
               </v-card>
             </v-dialog>
             <!-- /DIALOG -->
