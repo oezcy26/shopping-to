@@ -90,11 +90,44 @@
                 size
                 required
                 type="text"
+                @focus="addDialog = true"
               />
             </v-form>
           </v-flex>
           <v-flex shrink>
-            <v-btn @click="addNewItem" color="lime" fab>OK</v-btn>
+            <v-btn @click="addDialog = true" color="lime" fab>OK</v-btn>
+            <!-- DIALOG -->
+            <v-dialog v-model="addDialog">
+              <v-card>
+                <v-card-title>
+                  <v-layout fluid>
+                    <v-flex grow>
+                      <v-form @submit="addNewItem">
+                        <v-text-field
+                          v-if="addDialog"
+                          v-model="newItemTitle"
+                          placeholder="Was musst du kaufen?"
+                          size
+                          required
+                          type="text"
+                          autofocus
+                        />
+                        <!-- v-if=addDialog damit autofocus funktionniert ;-) -->
+                      </v-form>
+                    </v-flex>
+                    <v-flex shrink>
+                      <v-btn @click="addNewItem" color="lime" fab>OK</v-btn>
+                    </v-flex>
+                  </v-layout>
+                </v-card-title>
+                <v-card-text>
+                  <span>hallo</span>
+                  <span>hall</span>
+                </v-card-text>
+                <v-card-actions>actions</v-card-actions>
+              </v-card>
+            </v-dialog>
+            <!-- /DIALOG -->
           </v-flex>
         </v-layout>
       </v-footer>
@@ -152,7 +185,8 @@ export default {
       newItemTitle: null,
       newPersItemTitle: null,
       persItems: [],
-      drawer: null // drawer open or close
+      drawer: null, // drawer open or close
+      addDialog: false
     };
   },
   mounted: function() {
@@ -172,6 +206,7 @@ export default {
       evt.preventDefault();
       itemRef.push({ title: this.newItemTitle });
       this.newItemTitle = "";
+      this.addDialog = false;
     },
     removeItem: function(item) {
       itemRef.child(item[".key"]).remove();
