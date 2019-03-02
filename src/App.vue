@@ -1,27 +1,12 @@
 <template>
   <div id="app">
     <v-app>
+      <!-- Personal Items (Local Storage) -->
       <v-navigation-drawer app v-model="drawer">
         <v-toolbar id="navToolbar" class="light-green">
           <pers-item-input v-on:persitemadded="addPersItem"></pers-item-input>
         </v-toolbar>
-        <!-- FAVORITES -->
-        <v-list>
-          <template v-for="(pi,idx) in persItems">
-            <!-- clickable -->
-            <v-list-tile>
-              <v-list-tile-content>
-                <v-list-tile-title v-text="pi" class="title"></v-list-tile-title>
-              </v-list-tile-content>
-              <v-list-tile-action>
-                <v-btn fab small dark outline color="green" @click="removePersItem(idx)">
-                  <v-icon>done</v-icon>
-                </v-btn>
-              </v-list-tile-action>
-            </v-list-tile>
-            <v-divider class="noMargin"></v-divider>
-          </template>
-        </v-list>
+        <pers-item-list :items="persItems" @removepersitem="removePersItem"></pers-item-list>
       </v-navigation-drawer>
 
       <!-- EINKÄUFE -->
@@ -117,6 +102,7 @@
 import LazySmiley from "./components/LazySmiley";
 import LoadingSpinner from "./components/LoadingSpinner";
 import PersItemInput from "./components/PersItemInput";
+import PersItemList from "./components/PersItemList";
 import Firebase from "firebase";
 
 import firebaseConfig from "./firebaseConfig";
@@ -156,7 +142,8 @@ export default {
   components: {
     LazySmiley,
     LoadingSpinner,
-    PersItemInput
+    PersItemInput,
+    PersItemList
   },
   data: function() {
     return {
