@@ -3,10 +3,7 @@
     <v-app>
       <!-- Personal Items (Local Storage) -->
       <v-navigation-drawer app v-model="drawer">
-        <v-toolbar id="navToolbar" class="light-green">
-          <pers-item-input v-on:persitemadded="addPersItem"></pers-item-input>
-        </v-toolbar>
-        <pers-item-list :items="persItems" @removepersitem="removePersItem"></pers-item-list>
+        <pers-items></pers-items>
       </v-navigation-drawer>
 
       <!-- EINKÄUFE -->
@@ -16,7 +13,7 @@
         </span>
         <v-spacer/>
         <span>
-          <b>({{persItems.length}})</b>
+          <b>{{this.$store.state.test}}</b>
         </span>
         <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
       </v-toolbar>
@@ -101,8 +98,8 @@
 <script>
 import LazySmiley from "./components/LazySmiley";
 import LoadingSpinner from "./components/LoadingSpinner";
-import PersItemInput from "./components/PersItemInput";
-import PersItemList from "./components/PersItemList";
+import PersItems from "./components/PersItems";
+
 import Firebase from "firebase";
 
 import firebaseConfig from "./firebaseConfig";
@@ -142,29 +139,18 @@ export default {
   components: {
     LazySmiley,
     LoadingSpinner,
-    PersItemInput,
-    PersItemList
+    PersItems
   },
   data: function() {
     return {
       itemloading: true,
       refloading: true,
       newItemTitle: null,
-      newPersItemTitle: "",
-      persItems: [],
       drawer: null, // drawer open or close
       addDialog: false
     };
   },
-  mounted: function() {
-    if (localStorage.getItem("persItems")) {
-      try {
-        this.persItems = JSON.parse(localStorage.getItem("persItems"));
-      } catch (e) {
-        localStorage.removeItem("persItems");
-      }
-    }
-  },
+
   methods: {
     test: function() {
       alert("test");
@@ -177,23 +163,6 @@ export default {
     },
     removeItem: function(item) {
       itemRef.child(item[".key"]).remove();
-    },
-    addPersItem(newPersItemTitle) {
-      // ensure they actually typed something
-      if (!newPersItemTitle) {
-        return;
-      }
-
-      this.persItems.push(newPersItemTitle);
-      this.savePersItems();
-    },
-    removePersItem(x) {
-      this.persItems.splice(x, 1);
-      this.savePersItems();
-    },
-    savePersItems() {
-      const parsed = JSON.stringify(this.persItems);
-      localStorage.setItem("persItems", parsed);
     }
   }
 };

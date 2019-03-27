@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: "PersItemInput",
+  name: "PersItemList",
   props: {
     items: {
       type: Array,
