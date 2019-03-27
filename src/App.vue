@@ -13,7 +13,7 @@
         </span>
         <v-spacer/>
         <span>
-          <b>{{this.$store.state.test}}</b>
+          <b>({{this.$store.state.persItems.length}})</b>
         </span>
         <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
       </v-toolbar>

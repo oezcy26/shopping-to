@@ -3,7 +3,7 @@
     <v-toolbar id="navToolbar" class="light-green">
       <pers-item-input v-on:persitemadded="addPersItem"></pers-item-input>
     </v-toolbar>
-    <pers-item-list :items="persItems" @removepersitem="removePersItem"></pers-item-list>
+    <pers-item-list :items="this.$store.state.persItems" @removepersitem="removePersItem"></pers-item-list>
   </div>
 </template>
 
@@ -29,26 +29,10 @@ export default {
       if (!newPersItemTitle) {
         return;
       }
-
-      this.persItems.push(newPersItemTitle);
-      this.savePersItems();
+      this.$store.commit("addPersItem", newPersItemTitle);
     },
-    removePersItem(x) {
-      this.persItems.splice(x, 1);
-      this.savePersItems();
-    },
-    savePersItems() {
-      const parsed = JSON.stringify(this.persItems);
-      localStorage.setItem("persItems", parsed);
-    }
-  },
-  mounted: function() {
-    if (localStorage.getItem("persItems")) {
-      try {
-        this.persItems = JSON.parse(localStorage.getItem("persItems"));
-      } catch (e) {
-        localStorage.removeItem("persItems");
-      }
+    removePersItem(idx) {
+      this.$store.commit("removePersItem", idx);
     }
   }
 };
