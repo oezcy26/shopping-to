@@ -7,6 +7,7 @@ import VueFire from 'vuefire'
 import { VueHammer } from 'vue2-hammer'
 import Vuetify from 'vuetify'
 import Vuex from 'vuex'
+import Vue2Filters from 'vue2-filters'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -30,6 +31,7 @@ Vue.use(VueFire);
 Vue.use(VueHammer);
 Vue.use(Vuetify)
 Vue.use(Vuex);
+Vue.use(Vue2Filters);
 
 /* eslint-disable no-new */
 new Vue({

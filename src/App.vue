@@ -12,6 +12,13 @@
           <b>Einkäufe</b>
         </span>
         <v-spacer/>
+        <!--
+        <v-btn icon @click="sort_alpha()">
+          <v-icon>sort_by_alpha</v-icon>
+        </v-btn>
+       
+        <v-spacer/>
+        -->
         <span>
           <b>({{this.$store.state.persItems.length}})</b>
         </span>
@@ -25,8 +32,8 @@
           </div>
 
           <div v-else>
-            <v-list v-if="items.length > 0">
-              <template v-for="i in items">
+            <v-list v-if="sortedItems.length > 0">
+              <template v-for="i in orderBy(sortedItems,sortKey) ">
                 <v-list-tile>
                   <v-list-tile-content>
                     <span class="title">{{i.title}}</span>
@@ -103,6 +110,7 @@ import PersItems from "./components/PersItems";
 import Firebase from "firebase";
 
 import firebaseConfig from "./firebaseConfig";
+import Vue2Filters from "vue2-filters";
 /* IMPORTANT!: To make it run, create a file in this directory: 'firebaseConfig.js'
   with this content:
 
@@ -147,7 +155,8 @@ export default {
       refloading: true,
       newItemTitle: null,
       drawer: null, // drawer open or close
-      addDialog: false
+      addDialog: false,
+      sortKey: "title"
     };
   },
 
@@ -164,7 +173,13 @@ export default {
     removeItem: function(item) {
       itemRef.child(item[".key"]).remove();
     }
-  }
+  },
+  computed: {
+    sortedItems: function() {
+      return this.items;
+    }
+  },
+  mixins: [Vue2Filters.mixin]
 };
 </script>
 
