@@ -15,8 +15,7 @@
         <!--
         <v-btn icon @click="sort_alpha()">
           <v-icon>sort_by_alpha</v-icon>
-        </v-btn>
-       
+        </v-btn>       
         <v-spacer/>
         -->
         <span>
@@ -32,11 +31,26 @@
           </div>
 
           <div v-else>
-            <v-list v-if="sortedItems.length > 0">
-              <template v-for="i in orderBy(sortedItems,sortKey) ">
+            <v-list v-if="items.length > 0">
+              <template v-for="i in orderBy(filterBy(items, 'false', 'bought') ,sortKey) ">
                 <v-list-tile>
-                  <v-list-tile-content>
-                    <span class="title">{{i.title}}</span>
+                  <v-list-tile-content @click="toggleBought(i)">
+                    <span class="title" v-bind:class="{bought : i.bought}">{{i.title}}</span>
+                  </v-list-tile-content>
+                  <v-list-tile-action>
+                    <v-btn @click="removeItem(i)" fab small dark outline color="green">
+                      <v-icon>done</v-icon>
+                    </v-btn>
+                  </v-list-tile-action>
+                </v-list-tile>
+                <v-divider class="noMargin"></v-divider>
+              </template>
+            </v-list>
+            <v-list v-if="items.length > 0">
+              <template v-for="i in orderBy(filterBy(items, 'true', 'bought') ,sortKey) ">
+                <v-list-tile>
+                  <v-list-tile-content @click="toggleBought(i)">
+                    <span class="title" v-bind:class="{bought : i.bought}">{{i.title}}</span>
                   </v-list-tile-content>
                   <v-list-tile-action>
                     <v-btn @click="removeItem(i)" fab small dark outline color="green">
@@ -166,17 +180,18 @@ export default {
     },
     addNewItem: function(evt) {
       evt.preventDefault();
-      itemRef.push({ title: this.newItemTitle });
+      itemRef.push({ title: this.newItemTitle, bought: false });
       this.newItemTitle = "";
       this.addDialog = false;
     },
     removeItem: function(item) {
       itemRef.child(item[".key"]).remove();
-    }
-  },
-  computed: {
-    sortedItems: function() {
-      return this.items;
+    },
+    toggleBought: function(item) {
+      if (item.title) {
+        item.bought = !item.bought;
+        itemRef.child(item[".key"]).update({ bought: item.bought });
+      }
     }
   },
   mixins: [Vue2Filters.mixin]
@@ -210,5 +225,10 @@ body {
 
 #navToolbar div {
   padding-right: 0px;
+}
+
+.bought {
+  color: #cfcfcf;
+  text-decoration: line-through;
 }
 </style>
