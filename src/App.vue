@@ -11,13 +11,15 @@
         <span>
           <b>Einkäufe</b>
         </span>
+
         <v-spacer/>
-        <!--
-        <v-btn icon @click="sort_alpha()">
+
+        <v-btn icon>
           <v-icon>sort_by_alpha</v-icon>
-        </v-btn>       
+        </v-btn>
+
         <v-spacer/>
-        -->
+
         <span>
           <b>({{this.$store.state.persItems.length}})</b>
         </span>
@@ -84,7 +86,25 @@
             <!-- DIALOG -->
             <v-dialog v-model="addDialog">
               <v-card>
-                <v-card-text>Auswahl Migros, Coop etc..</v-card-text>
+                <v-card-text>
+                  <v-btn-toggle v-model="newItemShop">
+                    <v-btn flat value="Lidl">
+                      <b>L</b>idl
+                    </v-btn>
+                    <v-btn flat value="Coop">
+                      <b>C</b>oop
+                    </v-btn>
+                    <v-btn flat value="Migros">
+                      <b>M</b>igros
+                    </v-btn>
+                    <v-btn flat value="Denner">
+                      <b>D</b>enner
+                    </v-btn>
+                    <v-btn flat value="Türk">
+                      <b>T</b>ürk
+                    </v-btn>
+                  </v-btn-toggle>
+                </v-card-text>
                 <v-card-title>
                   <v-layout fluid>
                     <v-flex grow>
@@ -168,6 +188,7 @@ export default {
       itemloading: true,
       refloading: true,
       newItemTitle: null,
+      newItemShop: null,
       drawer: null, // drawer open or close
       addDialog: false,
       sortKey: "title"
@@ -180,8 +201,13 @@ export default {
     },
     addNewItem: function(evt) {
       evt.preventDefault();
-      itemRef.push({ title: this.newItemTitle, bought: false });
+      itemRef.push({
+        title: this.newItemTitle,
+        bought: false,
+        shop: this.newItemShop
+      });
       this.newItemTitle = "";
+      this.newItemShop = null;
       this.addDialog = false;
     },
     removeItem: function(item) {
