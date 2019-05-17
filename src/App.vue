@@ -14,9 +14,19 @@
 
         <v-spacer/>
 
+        <!--
         <v-btn icon>
           <v-icon>sort_by_alpha</v-icon>
         </v-btn>
+        
+        <v-overflow-btn
+          :items="['','Coop', 'Migros']"
+          label
+          hide-details
+          class="pa-0"
+          v-model="overflowBtn"
+        ></v-overflow-btn>
+        -->
 
         <v-spacer/>
 
@@ -36,11 +46,11 @@
             <v-list v-if="items.length > 0">
               <template v-for="i in orderBy(filterBy(items, 'false', 'bought') ,sortKey) ">
                 <v-list-tile>
-                  <v-list-tile-content @click="toggleBought(i)">
+                  <v-list-tile-content>
                     <span class="title" v-bind:class="{bought : i.bought}">{{i.title}}</span>
                   </v-list-tile-content>
                   <v-list-tile-action>
-                    <v-btn @click="removeItem(i)" fab small dark outline color="green">
+                    <v-btn @click="toggleBought(i)" fab small dark outline color="green">
                       <v-icon>done</v-icon>
                     </v-btn>
                   </v-list-tile-action>
@@ -51,11 +61,11 @@
             <v-list v-if="items.length > 0">
               <template v-for="i in orderBy(filterBy(items, 'true', 'bought') ,sortKey) ">
                 <v-list-tile>
-                  <v-list-tile-content @click="toggleBought(i)">
-                    <span class="title" v-bind:class="{bought : i.bought}">{{i.title}}</span>
+                  <v-list-tile-content @click.prevent.stop="handleClick($event, i)">
+                    <span class="title bought">{{i.title}}</span>
                   </v-list-tile-content>
                   <v-list-tile-action>
-                    <v-btn @click="removeItem(i)" fab small dark outline color="green">
+                    <v-btn @click="toggleBought(i)" fab small dark outline color="#d3d3d3">
                       <v-icon>done</v-icon>
                     </v-btn>
                   </v-list-tile-action>
@@ -66,6 +76,13 @@
           </div>
         </v-container>
       </v-content>
+
+      <vue-simple-context-menu
+        :elementId="'myUniqueId'"
+        :options="[{name:'Löschen'}]"
+        :ref="'vueSimpleContextMenu'"
+        @option-clicked="optionClicked"
+      ></vue-simple-context-menu>
 
       <v-footer app height="auto" inset>
         <v-layout justify-center fluid>
@@ -86,6 +103,7 @@
             <!-- DIALOG -->
             <v-dialog v-model="addDialog">
               <v-card>
+                <!--
                 <v-card-text>
                   <v-btn-toggle v-model="newItemShop">
                     <v-btn flat value="Lidl">
@@ -105,6 +123,7 @@
                     </v-btn>
                   </v-btn-toggle>
                 </v-card-text>
+                -->
                 <v-card-title>
                   <v-layout fluid>
                     <v-flex grow>
@@ -140,11 +159,14 @@
 import LazySmiley from "./components/LazySmiley";
 import LoadingSpinner from "./components/LoadingSpinner";
 import PersItems from "./components/PersItems";
+import VueSimpleContextMenu from "vue-simple-context-menu";
+import "vue-simple-context-menu/dist/vue-simple-context-menu.css";
 
 import Firebase from "firebase";
 
 import firebaseConfig from "./firebaseConfig";
 import Vue2Filters from "vue2-filters";
+
 /* IMPORTANT!: To make it run, create a file in this directory: 'firebaseConfig.js'
   with this content:
 
@@ -158,8 +180,6 @@ import Vue2Filters from "vue2-filters";
     storageBucket: .....,
     messagingSenderId: ......
   }
-
-
   */
 
 let app = Firebase.initializeApp(firebaseConfig);
@@ -181,7 +201,8 @@ export default {
   components: {
     LazySmiley,
     LoadingSpinner,
-    PersItems
+    PersItems,
+    VueSimpleContextMenu
   },
   data: function() {
     return {
@@ -191,10 +212,10 @@ export default {
       newItemShop: null,
       drawer: null, // drawer open or close
       addDialog: false,
-      sortKey: "title"
+      sortKey: "title",
+      overflowBtn: null
     };
   },
-
   methods: {
     test: function() {
       alert("test");
@@ -218,6 +239,12 @@ export default {
         item.bought = !item.bought;
         itemRef.child(item[".key"]).update({ bought: item.bought });
       }
+    },
+    optionClicked: function(event) {
+      this.removeItem(event.item);
+    },
+    handleClick: function($event, item) {
+      this.$refs.vueSimpleContextMenu.showMenu(event, item);
     }
   },
   mixins: [Vue2Filters.mixin]

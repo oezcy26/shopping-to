@@ -8,6 +8,7 @@ import { VueHammer } from 'vue2-hammer'
 import Vuetify from 'vuetify'
 import Vuex from 'vuex'
 import Vue2Filters from 'vue2-filters'
+import VueSimpleContextMenu from 'vue-simple-context-menu'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
